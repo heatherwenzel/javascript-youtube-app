@@ -33,10 +33,15 @@ form {
 nav {
   display: flex;
   flex-direction: column;
+  width: 300px;
 }
 
-.nav-button {
-  width: 300px;
+.demo-card__primary-action:hover {
+  cursor: auto;
+}
+
+.mdc-card__primary-action::before {
+  position: static;
 }
 
 .mdc-card {
@@ -47,19 +52,48 @@ nav {
 
 iframe {
   border: none;
+  width: 100%;
 }
 
 @media only screen and (min-width: 600px) {
+  .mdc-text-field--outlined {
+    width: 350px;
+  }
+
+  .main-content {
+    margin-bottom: 20px;
+  }
+
   nav {
     flex-direction: row;
+    justify-content: space-evenly;
+    width: 90%;
   }
 
   .nav-button {
-    width: 120px;
+    width: 100%;
+    padding: 0;
+  }
+
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .mdc-button--unelevated {
     margin: 5px;
+  }
+
+  .mdc-card {
+    width: 90%;
+    margin: 20px 0;
+  }
+
+  iframe {
+    border: none;
+    width: 320px;
+    height: 195px;
   }
 
 }
@@ -67,10 +101,19 @@ iframe {
 @media only screen and (min-width: 768px) {
   nav {
     flex-direction: column;
+    width: 40%;
   }
 
   .main-content {
-    display: flex;
     flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+    margin: 50px 0;
+  }
+
+  .mdc-card {
+    margin: 0 20px;
+    width: 60%;
   }
 }
