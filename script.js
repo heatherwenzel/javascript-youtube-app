@@ -3,59 +3,41 @@
 const apikey = "AIzaSyBZbA1M4VUqo2Hu0RmeQnGso0Zut-3S9qE";
 let searchResults = [];
 let videoIDs = [];
-let query = document.getElementById("userSearch").value;
-let searchURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query}&type=video&videoEmbeddable=true&key=${apikey}`;
+let videoData = "";
 
 //need to run searchYouTube function on init to load 5 movie trailers
 
 function searchYouTube() {
   event.preventDefault();
-  fetch(searchURL)
+  let query = document.getElementById("userSearch").value;
+  fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query}&type=video&videoEmbeddable=true&key=${apikey}`)
     .then(function(response) {
       return response.json();
     })
     .then(function(data) {
-      searchResults = data.items;
-      
+      searchResults = data.items;    
       for (let i = 0; i < searchResults.length; i++) {
         videoIDs.push(searchResults[i].id.videoId);
       }
-
       return fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoIDs[0]}&key=${apikey}`)
     })
     .then(function(response) {
       return response.json();
     })
     .then(function(data) {
-      console.log(data);
+      videoData = data.items[0].statistics;
+      updateDetails();
     })
     .catch(function(error) {
       console.log("Request failed:", error);
     });
-
-  // fetch(searchURL)
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     searchResults = data.items;
-  //     for (let i = 0; i < searchResults.length; i++) {
-  //       videoIDs.push(searchResults[i].id.videoId);
-  //     }
-  //     console.log(searchResults);
-  //     console.log(videoIDs);
-  //   });
 }
 
-// function updateDetails() {
-//   fetch(
-//     `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoIDs[0]}&key=${apikey}`
-//   )
-//     .then(response => response.json())
-//     .then(data => {
-//       console.log(data);
-//     });
-//   document.getElementById("title").innerHTML = searchResults[0].snippet.title;
-//   document.getElementById("description").innerHTML = searchResults[0].snippet.description;
-//   // document.getElementById("views").innerHTML =
-//   // document.getElementById("likes").innerHTML =
-//   // document.getElementById("dislikes").innerHTML =
-// }
+function updateDetails() {
+  document.getElementById("iframe").setAttribute('src', `https://www.youtube.com/embed/${videoIDs[0]}`);
+  document.getElementById("title").innerHTML = searchResults[0].snippet.title;
+  document.getElementById("description").innerHTML = searchResults[0].snippet.description;
+  document.getElementById("views").innerHTML = videoData.viewCount;
+  document.getElementById("likes").innerHTML = videoData.likeCount;
+  document.getElementById("dislikes").innerHTML = videoData.dislikeCount;
+}

@@ -9,11 +9,11 @@
 </head>
 <body>
 
-  <form id="search">
+  <form id="search" onsubmit="searchYouTube()">
     <input type="text" id="userSearch">
-    <button onclick="searchYouTube()">Search</button>
+    <button>Search</button>
   </form>
-
+  
   <nav>
     <button>Watch video 1</button>
     <button>Watch video 2</button>
@@ -23,7 +23,7 @@
   </nav>
 
   <div class="video-player">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0"></iframe>
+    <iframe id="iframe"></iframe>
     <p id="title"></p>
     <p id="description"></p>
     <p id="views"></p>
