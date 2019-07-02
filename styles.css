@@ -10,3 +10,7 @@ nav {
   display: flex;
   flex-direction: column;
 }
+
+iframe {
+  border: none;
+}

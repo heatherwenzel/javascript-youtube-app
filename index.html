@@ -32,13 +32,18 @@
     <button class="mdc-button mdc-button--unelevated" onclick="showVideoFive()">Watch video 5</button>
   </nav>
 
-  <div class="video-player">
-    <iframe id="iframe"></iframe>
-    <p id="title">Title placeholder</p>
-    <p id="description">Description placeholder</p>
-    <p id="views">Views placeholder</p>
-    <p id="likes">Likes placeholder</p>
-    <p id="dislikes">Dislikes placeholder</p>
+  <div class="mdc-card demo-card">
+    <div class="mdc-card__primary-action demo-card__primary-action" tabindex="0">
+      <div class="demo-card__primary">
+        <iframe id="iframe"></iframe>
+        <h2 class="demo-card__title mdc-typography mdc-typography--headline6" id="title">Title placeholder</h2>
+        <h3 class="demo-card__subtitle mdc-typography mdc-typography--subtitle2" id="description">Description placeholder</h3>
+      </div>
+      <div class="demo-card__secondary mdc-typography mdc-typography--body2" id="views">Views placeholder</div>
+      <div class="demo-card__secondary mdc-typography mdc-typography--body2" id="likes">Likes placeholder</div>
+      <div class="demo-card__secondary mdc-typography mdc-typography--body2" id="dislikes">Dislikes placeholder
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>

@@ -10,7 +10,7 @@ let videoIDs = [];
 let videoData = "";
 
 //makes the initial search and video data API calls when the page loads
-// window.onload = loadYouTube();
+window.onload = loadYouTube();
 
 function loadYouTube() {
   //makes the YouTube search API call and returns the data in JSON format
@@ -22,14 +22,20 @@ function loadYouTube() {
     })
     //initializes the searchResults array to the response from the search API call
     .then(function(data) {
-      searchResults = data.items;    
+      searchResults = data.items;
+      console.log(searchResults);
+
       //pushes each of the IDs from the API response into the videoIDs array
       for (let i = 0; i < searchResults.length; i++) {
         videoIDs.push(searchResults[i].id.videoId);
       }
+      console.log(videoIDs);
+
       //makes the YouTube video data API call and returns the data in JSON format
       return fetch(
-        `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoIDs[0]}&key=${apikey}`
+        `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${
+          videoIDs[0]
+        }&key=${apikey}`
       );
     })
     .then(function(response) {
@@ -37,8 +43,10 @@ function loadYouTube() {
     })
     //initializes the videoData variable to the response from the video data API call
     .then(function(data) {
-      videoData = data.items[0].statistics;      
-      //calls the function to update the initial video's details in the video-player div
+      videoData = data.items[0].statistics;
+      console.log(videoData);
+
+      //calls the function to update the initial video's details in the video player div
       updateDetails();
     })
     //shows an error if the API call returns one
@@ -47,7 +55,7 @@ function loadYouTube() {
     });
 }
 
-//updates the initial video, title, description, views, likes and dislikes in the video-player div
+//updates the initial video, title, description, views, likes and dislikes in the video player div
 function updateDetails() {
   //sets the video shown in the iframe to the first video in the videoIDs array
   document
@@ -68,15 +76,12 @@ function updateDetails() {
 
 //calls on the YouTube search and video data API based on the user's input
 function searchYouTube() {
-  event.preventDefault();
-  console.log(document.getElementById("text-field-hero-input").value);
-  /*
   //prevents the page from refreshing when the form is submitted
   event.preventDefault();
   //empties the videoIDs array
   videoIDs = [];
   //sets the search parameter to the user's input
-  let query = document.getElementById("userSearch").value;  
+  let query = document.getElementById("userSearch").value;
   //makes the YouTube search API call using the user's input and returns the data in JSON format
   fetch(
     `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query}&type=video&videoEmbeddable=true&key=${apikey}`
@@ -86,14 +91,20 @@ function searchYouTube() {
     })
     //initializes the searchResults array to the response from the search API call
     .then(function(data) {
-      searchResults = data.items;      
+      searchResults = data.items;
+      console.log(searchResults);
+
       //pushes each of the IDs from the API response into the videoIDs array
       for (let i = 0; i < searchResults.length; i++) {
         videoIDs.push(searchResults[i].id.videoId);
-      }     
+      }
+      console.log(videoIDs);
+
       //makes the YouTube video data API call and returns the data in JSON format
       return fetch(
-        `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoIDs[0]}&key=${apikey}`
+        `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${
+          videoIDs[0]
+        }&key=${apikey}`
       );
     })
     .then(function(response) {
@@ -101,15 +112,16 @@ function searchYouTube() {
     })
     //initializes the videoData variable to the response from the video data API call
     .then(function(data) {
-      videoData = data.items[0].statistics;      
-      //calls the function to update the initial video's details in the video-player div
+      videoData = data.items[0].statistics;
+      console.log(videoData);
+
+      //calls the function to update the initial video's details in the video player div
       updateDetails();
     })
     //shows an error if the API call returns one
     .catch(function(error) {
       console.log("Request failed:", error);
     });
-    */
 }
 
 function showVideoOne() {
@@ -123,16 +135,17 @@ function showVideoOne() {
     })
     .then(function(data) {
       videoData = data.items[0].statistics;
+      document
+        .getElementById("iframe")
+        .setAttribute("src", `https://www.youtube.com/embed/${videoIDs[0]}`);
+      document.getElementById("title").innerHTML =
+        searchResults[0].snippet.title;
+      document.getElementById("description").innerHTML =
+        searchResults[0].snippet.description;
+      document.getElementById("views").innerHTML = videoData.viewCount;
+      document.getElementById("likes").innerHTML = videoData.likeCount;
+      document.getElementById("dislikes").innerHTML = videoData.dislikeCount;
     });
-  document
-    .getElementById("iframe")
-    .setAttribute("src", `https://www.youtube.com/embed/${videoIDs[0]}`);
-  document.getElementById("title").innerHTML = searchResults[0].snippet.title;
-  document.getElementById("description").innerHTML =
-    searchResults[0].snippet.description;
-  document.getElementById("views").innerHTML = videoData.viewCount;
-  document.getElementById("likes").innerHTML = videoData.likeCount;
-  document.getElementById("dislikes").innerHTML = videoData.dislikeCount;
 }
 
 function showVideoTwo() {
@@ -146,16 +159,17 @@ function showVideoTwo() {
     })
     .then(function(data) {
       videoData = data.items[0].statistics;
+      document
+        .getElementById("iframe")
+        .setAttribute("src", `https://www.youtube.com/embed/${videoIDs[1]}`);
+      document.getElementById("title").innerHTML =
+        searchResults[1].snippet.title;
+      document.getElementById("description").innerHTML =
+        searchResults[1].snippet.description;
+      document.getElementById("views").innerHTML = videoData.viewCount;
+      document.getElementById("likes").innerHTML = videoData.likeCount;
+      document.getElementById("dislikes").innerHTML = videoData.dislikeCount;
     });
-  document
-    .getElementById("iframe")
-    .setAttribute("src", `https://www.youtube.com/embed/${videoIDs[1]}`);
-  document.getElementById("title").innerHTML = searchResults[1].snippet.title;
-  document.getElementById("description").innerHTML =
-    searchResults[1].snippet.description;
-  document.getElementById("views").innerHTML = videoData.viewCount;
-  document.getElementById("likes").innerHTML = videoData.likeCount;
-  document.getElementById("dislikes").innerHTML = videoData.dislikeCount;
 }
 
 function showVideoThree() {
@@ -169,16 +183,17 @@ function showVideoThree() {
     })
     .then(function(data) {
       videoData = data.items[0].statistics;
+      document
+        .getElementById("iframe")
+        .setAttribute("src", `https://www.youtube.com/embed/${videoIDs[2]}`);
+      document.getElementById("title").innerHTML =
+        searchResults[2].snippet.title;
+      document.getElementById("description").innerHTML =
+        searchResults[2].snippet.description;
+      document.getElementById("views").innerHTML = videoData.viewCount;
+      document.getElementById("likes").innerHTML = videoData.likeCount;
+      document.getElementById("dislikes").innerHTML = videoData.dislikeCount;
     });
-  document
-    .getElementById("iframe")
-    .setAttribute("src", `https://www.youtube.com/embed/${videoIDs[2]}`);
-  document.getElementById("title").innerHTML = searchResults[2].snippet.title;
-  document.getElementById("description").innerHTML =
-    searchResults[2].snippet.description;
-  document.getElementById("views").innerHTML = videoData.viewCount;
-  document.getElementById("likes").innerHTML = videoData.likeCount;
-  document.getElementById("dislikes").innerHTML = videoData.dislikeCount;
 }
 
 function showVideoFour() {
@@ -192,16 +207,17 @@ function showVideoFour() {
     })
     .then(function(data) {
       videoData = data.items[0].statistics;
+      document
+        .getElementById("iframe")
+        .setAttribute("src", `https://www.youtube.com/embed/${videoIDs[3]}`);
+      document.getElementById("title").innerHTML =
+        searchResults[3].snippet.title;
+      document.getElementById("description").innerHTML =
+        searchResults[3].snippet.description;
+      document.getElementById("views").innerHTML = videoData.viewCount;
+      document.getElementById("likes").innerHTML = videoData.likeCount;
+      document.getElementById("dislikes").innerHTML = videoData.dislikeCount;
     });
-  document
-    .getElementById("iframe")
-    .setAttribute("src", `https://www.youtube.com/embed/${videoIDs[3]}`);
-  document.getElementById("title").innerHTML = searchResults[3].snippet.title;
-  document.getElementById("description").innerHTML =
-    searchResults[3].snippet.description;
-  document.getElementById("views").innerHTML = videoData.viewCount;
-  document.getElementById("likes").innerHTML = videoData.likeCount;
-  document.getElementById("dislikes").innerHTML = videoData.dislikeCount;
 }
 
 function showVideoFive() {
@@ -215,14 +231,15 @@ function showVideoFive() {
     })
     .then(function(data) {
       videoData = data.items[0].statistics;
+      document
+        .getElementById("iframe")
+        .setAttribute("src", `https://www.youtube.com/embed/${videoIDs[4]}`);
+      document.getElementById("title").innerHTML =
+        searchResults[4].snippet.title;
+      document.getElementById("description").innerHTML =
+        searchResults[4].snippet.description;
+      document.getElementById("views").innerHTML = videoData.viewCount;
+      document.getElementById("likes").innerHTML = videoData.likeCount;
+      document.getElementById("dislikes").innerHTML = videoData.dislikeCount;
     });
-  document
-    .getElementById("iframe")
-    .setAttribute("src", `https://www.youtube.com/embed/${videoIDs[4]}`);
-  document.getElementById("title").innerHTML = searchResults[4].snippet.title;
-  document.getElementById("description").innerHTML =
-    searchResults[4].snippet.description;
-  document.getElementById("views").innerHTML = videoData.viewCount;
-  document.getElementById("likes").innerHTML = videoData.likeCount;
-  document.getElementById("dislikes").innerHTML = videoData.dislikeCount;
 }
