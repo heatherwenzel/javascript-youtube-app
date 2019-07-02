@@ -10,7 +10,7 @@ let videoIDs = [];
 let videoData = "";
 
 //makes the initial search and video data API calls when the page loads
-window.onload = loadYouTube();
+// window.onload = loadYouTube();
 
 function loadYouTube() {
   //makes the YouTube search API call and returns the data in JSON format
@@ -67,11 +67,11 @@ function updateDetails() {
   document.getElementById("description").innerHTML =
     searchResults[0].snippet.description;
   //sets the views shown to that of the selected video
-  document.getElementById("views").innerHTML = videoData.viewCount;
+  document.getElementById("views").innerHTML = `Views: ${videoData.viewCount}`;
   //sets the likes shown to that of the selected video
-  document.getElementById("likes").innerHTML = videoData.likeCount;
+  document.getElementById("likes").innerHTML = `Likes: ${videoData.likeCount}`;
   //sets the dislikes shown to that of the selected video
-  document.getElementById("dislikes").innerHTML = videoData.dislikeCount;
+  document.getElementById("dislikes").innerHTML = `Dislikes: ${videoData.dislikeCount}`;
 }
 
 //calls on the YouTube search and video data API based on the user's input
@@ -81,7 +81,9 @@ function searchYouTube() {
   //empties the videoIDs array
   videoIDs = [];
   //sets the search parameter to the user's input
-  let query = document.getElementById("userSearch").value;
+  let query = document.getElementById("text-field-hero-input").value;
+  console.log(document.getElementById("text-field-hero-input").value);
+  
   //makes the YouTube search API call using the user's input and returns the data in JSON format
   fetch(
     `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${query}&type=video&videoEmbeddable=true&key=${apikey}`

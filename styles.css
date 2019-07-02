@@ -1,9 +1,33 @@
-form {
+body {
+  margin: 0;
+  padding: 10px;
+  background-image: url("https://webgradients.com/public/webgradients_png/032%20Sharpeye%20Eagle.png");
+  background-attachment: fixed;
+  background-size: cover;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.mdc-text-field--outlined {
+  height: 40px;
+  border: none;
+  margin-right: 10px;
+  width: 200px;
 }
 
 .mdc-button--unelevated {
-  text-transform: capitalize;
+  margin: 5px 0;
+  letter-spacing: normal;
+  text-transform: none;
 }
 
 nav {
@@ -11,6 +35,42 @@ nav {
   flex-direction: column;
 }
 
+.nav-button {
+  width: 300px;
+}
+
+.mdc-card {
+  margin: 10px 0;
+  padding: 15px;
+  width: 300px;
+}
+
 iframe {
   border: none;
+}
+
+@media only screen and (min-width: 600px) {
+  nav {
+    flex-direction: row;
+  }
+
+  .nav-button {
+    width: 120px;
+  }
+
+  .mdc-button--unelevated {
+    margin: 5px;
+  }
+
+}
+
+@media only screen and (min-width: 768px) {
+  nav {
+    flex-direction: column;
+  }
+
+  .main-content {
+    display: flex;
+    flex-direction: row-reverse;
+  }
 }
