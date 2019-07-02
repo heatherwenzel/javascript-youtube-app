@@ -95,7 +95,6 @@ iframe {
     width: 320px;
     height: 195px;
   }
-
 }
 
 @media only screen and (min-width: 768px) {
@@ -109,7 +108,7 @@ iframe {
     align-items: center;
     justify-content: space-around;
     width: 80%;
-    margin: 50px 0;
+    margin: 30px 0;
   }
 
   .mdc-card {

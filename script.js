@@ -61,13 +61,17 @@ function updateDetails() {
   document.getElementById("description").innerHTML =
     searchResults[0].snippet.description;
   //sets the views shown to that of the selected video
-  document.getElementById("views").innerHTML = `Views: ${videoData.viewCount}`;
+  document.getElementById("views").innerHTML = `Views: ${parseFloat(
+    videoData.viewCount
+  ).toLocaleString("en")}`;
   //sets the likes shown to that of the selected video
-  document.getElementById("likes").innerHTML = `Likes: ${videoData.likeCount}`;
+  document.getElementById("likes").innerHTML = `Likes: ${parseFloat(
+    videoData.likeCount
+  ).toLocaleString("en")}`;
   //sets the dislikes shown to that of the selected video
-  document.getElementById("dislikes").innerHTML = `Dislikes: ${
+  document.getElementById("dislikes").innerHTML = `Dislikes: ${parseFloat(
     videoData.dislikeCount
-  }`;
+  ).toLocaleString("en")}`;
 }
 
 //calls on the YouTube search and video data API based on the user's input
@@ -132,15 +136,15 @@ function showVideoOne() {
         searchResults[0].snippet.title;
       document.getElementById("description").innerHTML =
         searchResults[0].snippet.description;
-      document.getElementById("views").innerHTML = `Views: ${
+      document.getElementById("views").innerHTML = `Views: ${parseFloat(
         videoData.viewCount
-      }`;
-      document.getElementById("likes").innerHTML = `Likes: ${
+      ).toLocaleString("en")}`;
+      document.getElementById("likes").innerHTML = `Likes: ${parseFloat(
         videoData.likeCount
-      }`;
-      document.getElementById("dislikes").innerHTML = `Dislikes: ${
+      ).toLocaleString("en")}`;
+      document.getElementById("dislikes").innerHTML = `Dislikes: ${parseFloat(
         videoData.dislikeCount
-      }`;
+      ).toLocaleString("en")}`;
     });
 }
 
@@ -162,15 +166,15 @@ function showVideoTwo() {
         searchResults[1].snippet.title;
       document.getElementById("description").innerHTML =
         searchResults[1].snippet.description;
-      document.getElementById("views").innerHTML = `Views: ${
+      document.getElementById("views").innerHTML = `Views: ${parseFloat(
         videoData.viewCount
-      }`;
-      document.getElementById("likes").innerHTML = `Likes: ${
+      ).toLocaleString("en")}`;
+      document.getElementById("likes").innerHTML = `Likes: ${parseFloat(
         videoData.likeCount
-      }`;
-      document.getElementById("dislikes").innerHTML = `Dislikes: ${
+      ).toLocaleString("en")}`;
+      document.getElementById("dislikes").innerHTML = `Dislikes: ${parseFloat(
         videoData.dislikeCount
-      }`;
+      ).toLocaleString("en")}`;
     });
 }
 
@@ -192,15 +196,15 @@ function showVideoThree() {
         searchResults[2].snippet.title;
       document.getElementById("description").innerHTML =
         searchResults[2].snippet.description;
-      document.getElementById("views").innerHTML = `Views: ${
+      document.getElementById("views").innerHTML = `Views: ${parseFloat(
         videoData.viewCount
-      }`;
-      document.getElementById("likes").innerHTML = `Likes: ${
+      ).toLocaleString("en")}`;
+      document.getElementById("likes").innerHTML = `Likes: ${parseFloat(
         videoData.likeCount
-      }`;
-      document.getElementById("dislikes").innerHTML = `Dislikes: ${
+      ).toLocaleString("en")}`;
+      document.getElementById("dislikes").innerHTML = `Dislikes: ${parseFloat(
         videoData.dislikeCount
-      }`;
+      ).toLocaleString("en")}`;
     });
 }
 
@@ -222,15 +226,15 @@ function showVideoFour() {
         searchResults[3].snippet.title;
       document.getElementById("description").innerHTML =
         searchResults[3].snippet.description;
-      document.getElementById("views").innerHTML = `Views: ${
+      document.getElementById("views").innerHTML = `Views: ${parseFloat(
         videoData.viewCount
-      }`;
-      document.getElementById("likes").innerHTML = `Likes: ${
+      ).toLocaleString("en")}`;
+      document.getElementById("likes").innerHTML = `Likes: ${parseFloat(
         videoData.likeCount
-      }`;
-      document.getElementById("dislikes").innerHTML = `Dislikes: ${
+      ).toLocaleString("en")}`;
+      document.getElementById("dislikes").innerHTML = `Dislikes: ${parseFloat(
         videoData.dislikeCount
-      }`;
+      ).toLocaleString("en")}`;
     });
 }
 
@@ -252,14 +256,14 @@ function showVideoFive() {
         searchResults[4].snippet.title;
       document.getElementById("description").innerHTML =
         searchResults[4].snippet.description;
-      document.getElementById("views").innerHTML = `Views: ${
+      document.getElementById("views").innerHTML = `Views: ${parseFloat(
         videoData.viewCount
-      }`;
-      document.getElementById("likes").innerHTML = `Likes: ${
+      ).toLocaleString("en")}`;
+      document.getElementById("likes").innerHTML = `Likes: ${parseFloat(
         videoData.likeCount
-      }`;
-      document.getElementById("dislikes").innerHTML = `Dislikes: ${
+      ).toLocaleString("en")}`;
+      document.getElementById("dislikes").innerHTML = `Dislikes: ${parseFloat(
         videoData.dislikeCount
-      }`;
+      ).toLocaleString("en")}`;
     });
 }
